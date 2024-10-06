@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Smart Home App</string>
+    <string name="start_voice_recognition">Start Voice Recognition</string>
+    <string name="start_voice_command_recognition">Start voice command recognition</string>
+</resources>

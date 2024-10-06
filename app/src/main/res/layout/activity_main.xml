@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- TextView for instructions -->
+    <TextView
+        android:id="@+id/instructionsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press the button and speak to give a command."
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Button to start voice recognition -->
+    <Button
+        android:id="@+id/voiceCommandButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Voice Command Recognition"
+        android:contentDescription="@string/start_voice_command_recognition"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_centerInParent="true"/>
+
+    <!-- TextView to display recognized text -->
+    <TextView
+        android:id="@+id/recognizedTextView"
+        android:layout_width="321dp"
+        android:layout_height="43dp"
+        android:layout_below="@id/voiceCommandButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="121dp"
+        android:text="    Recognized text will appear here"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/confirmationTextView"
+        android:layout_width="367dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/recognizedTextView"
+        android:layout_marginTop="64dp"
+        android:text="       Confirmation messages will appear here"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+</RelativeLayout>
