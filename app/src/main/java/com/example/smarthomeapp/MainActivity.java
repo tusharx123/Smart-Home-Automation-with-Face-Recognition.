@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -98,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
     private boolean checkPermissions() {
         return ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;    }
+                ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
+    }
 
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this,
                 new String[]{
                         Manifest.permission.BLUETOOTH,
                         Manifest.permission.BLUETOOTH_CONNECT,
-
                         Manifest.permission.RECORD_AUDIO
                 }, PERMISSION_REQUEST_CODE);
     }
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             enableBluetoothLauncher.launch(enableBtIntent);  // Use ActivityResultLauncher
         } else {
-            connectToDevice("Device_Name_or_MAC_Address"); // Replace with your actual device name or MAC address
+            connectToDevice("HC-05"); // HC-05 Bluetooth module name
         }
     }
 
@@ -164,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         for (BluetoothDevice pairedDevice : pairedDevices) {
             if (pairedDevice.getName().equals(deviceName)) {
                 device = pairedDevice;
-                UUID uuid = device.getUuids()[0].getUuid();
+                UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"); // HC-05 SPP UUID
                 try {
                     bluetoothSocket = device.createRfcommSocketToServiceRecord(uuid);
                     bluetoothSocket.connect();
