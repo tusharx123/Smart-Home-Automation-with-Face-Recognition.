@@ -179,9 +179,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendCommandToArduino(String command) {
+        // Normalize the command to lowercase to make matching easier
+        String normalizedCommand = command.trim().toLowerCase();
+
+        // Check for specific voice commands and send corresponding Bluetooth signal
+        switch (normalizedCommand) {
+            case "turn on light":
+                sendBluetoothCommand("1");  // Send '1' to turn on light
+                break;
+            case "turn off light":
+                sendBluetoothCommand("0");  // Send '0' to turn off light
+                break;
+            default:
+                Toast.makeText(this, "Command not recognized", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    // Method to send the Bluetooth command
+    private void sendBluetoothCommand(String command) {
         if (bluetoothSocket != null) {
             try {
-                bluetoothSocket.getOutputStream().write(command.getBytes());
+                bluetoothSocket.getOutputStream().write(command.getBytes());  // Send the command
                 Toast.makeText(this, "Command sent: " + command, Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
                 Log.e(TAG, "Error sending command", e);
@@ -189,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private volatile boolean listening = true;
     private void listenForData() {
