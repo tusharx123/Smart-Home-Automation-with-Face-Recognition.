@@ -1,0 +1,4 @@
+opencv-python==4.10.0.84
+numpy==1.26.4
+AppOpner==1.7
+pillow==10.2.0
